@@ -7,6 +7,7 @@ use Decimal\Decimal;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Float_;
 
 /**
  * @ORM\Entity(repositoryClass=AlbumRepository::class)
@@ -59,6 +60,11 @@ class Album
      * @ORM\OneToMany(targetEntity=Review::class, mappedBy="album")
      */
     private $reviews;
+
+    public function __toString(): string
+    {
+        return $this->title; // Return the title of the album as the string representation
+    }
 
     public function __construct()
     {
@@ -130,9 +136,9 @@ class Album
         return $this;
     }
 
-    public function getAverageRating()
+    public function getAverageRating(): ?float
     {
-        return $this->average_rating ;
+        return $this->average_rating;
     }
 
     public function setAverageRating(float $average_rating): self

@@ -6,13 +6,12 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  * @ORM\Table(name="`user`")
  */
-class User implements UserInterface
+class User
 {
     /**
      * @ORM\Id
@@ -20,7 +19,6 @@ class User implements UserInterface
      * @ORM\Column(type="integer")
      */
     private $id;
-    private $roles = [];
 
     /**
      * @ORM\Column(type="string", length=50)
@@ -169,24 +167,5 @@ class User implements UserInterface
         }
 
         return $this;
-    }
-    public function getSalt()
-    {
-        // If you're using bcrypt or modern encryption algorithms, you don't need a salt
-        // If you're using older algorithms, return a random string here
-        return null;
-    }
-    public function getRoles()
-    {
-        // Return the user's roles as an array
-        return $this->roles;
-    }
-
-  
-
-    public function eraseCredentials()
-    {
-        // If your entity stores plaintext passwords, remove them here for security
-        // If using bcrypt, you don't need to do anything here
     }
 }

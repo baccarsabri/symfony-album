@@ -46,14 +46,6 @@ class AlbumRepository extends ServiceEntityRepository
             $this->_em->flush();
         }
     }
-    public function findByTitleOrArtist($searchTerm)
-    {
-        return $this->createQueryBuilder('a')
-            ->andWhere('a.title LIKE :term OR a.artist LIKE :term')
-            ->setParameter('term', '%' . $searchTerm . '%')
-            ->getQuery()
-            ->getResult();
-    }
 
     // /**
     //  * @return Album[] Returns an array of Album objects

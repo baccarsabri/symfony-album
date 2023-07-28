@@ -58,6 +58,10 @@ class Review
      * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="review")
      */
     private $comments;
+    public function __toString(): string
+    {
+        return $this->review_text; // Return the title of the album as the string representation
+    }
 
     public function __construct()
     {
