@@ -46,6 +46,10 @@ class Comment
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="comments")
      */
     private $user_id;
+    public function __toString(): string
+    {
+        return $this->comment_text; // Return the title of the album as the string representation
+    }
 
     public function __construct()
     {
